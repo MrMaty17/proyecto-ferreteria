@@ -11,9 +11,15 @@
         <h1 class="text-2xl">Ferreteria</h1>
         <nav>
             <ul class="flex items-center">
-                <li><a class="text-xl" href="index.php"><img src="assets/image/search-outline.svg" alt="icono de buscador"></a></li>
+                <li><button onclick="" class="cursor-pointer"><img src="assets/image/search-outline.svg" alt="icono de buscador"></button></li>
                 <li><a class="text-xl" href="index.php">Inicio</a></li>
             </ul>
+        </nav>
+
+        <nav class="mt-3 flex justify-center items-center">
+            <div class="items-center">
+                <input type="search" name="search" id=""> <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white">Enviar</button>
+            </div>
         </nav>
     </header>
 
