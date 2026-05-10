@@ -6,8 +6,8 @@
     <title>Ferreteria</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-500">
-    <header class="bg-green-800 flex justify-center items-center p-4">
+<body class="bg-slate-500 min-h-screen">
+    <header class="bg-green-800 flex justify-between items-center p-4">
         <h1 class="text-2xl">Ferreteria</h1>
         <nav>
             <ul class="flex items-center">
@@ -16,6 +16,10 @@
             </ul>
         </nav>
     </header>
+
+    <main class="flex grow justify-center items-center m-5">
+        <p>Hola xd</p>
+    </main>
 
     <footer class="flex flex-row md:flex-col justify-between items-center border-t border-gray-300">
         <p class="text-xs text-gray-400">Todos los derechos reservados &copy; Matias Arce</p>
