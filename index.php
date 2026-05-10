@@ -7,16 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-200 min-h-screen flex flex-col">
-    <header class="bg-green-700 flex justify-between items-center p-4 text-white">
-        <h1 class="text-2xl">Ferreteria</h1>
-        <nav>
-            <ul class="flex items-center">
-                <li><button onclick="" class="cursor-pointer"><img src="assets/image/search-outline.svg" alt="icono de buscador"></button></li>
-                <li><a class="text-xl" href="index.php">Inicio</a></li>
-            </ul>
-        </nav>
+    <header class="bg-green-700 flex flex-col p-4 text-white">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl">Ferreteria</h1>
+            <nav>
+                <ul class="flex items-center">
+                    <li><button onclick="onClickSeachButton" class="cursor-pointer"><img src="./assets/image/search-outline.svg" alt="icono de buscador"></button></li>
+                    <li><a class="text-xl" href="index.php">Inicio</a></li>
+                </ul>
+            </nav>
+        </div>
 
-        <nav class="mt-3 flex justify-center items-center">
+        <nav id="search-bar" class="mt-3 hidden flex justify-center items-center">
             <div class="items-center">
                 <input type="search" name="search" id=""> <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white">Enviar</button>
             </div>
@@ -34,5 +36,12 @@
             <a class="hover:text-green-700" href="#">GitHub</a>
         </div>
     </footer>
+
+    <script>
+        const onClickSeachButton = () => {
+            let searchBox = document.querySelector('#search-bar');
+            searchBox.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
