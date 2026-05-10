@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-200 min-h-screen flex flex-col">
-    <header class="bg-green-700 flex flex-col p-4 text-white">
+    <header class="bg-green-700 flex flex-col p-4 px-6 text-white">
         <div class="flex justify-between items-center">
             <h1 class="text-2xl">Ferreteria</h1>
             <nav>
