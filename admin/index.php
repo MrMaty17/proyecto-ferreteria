@@ -8,20 +8,22 @@ $result = $conexion->query($sql);
 
 ?>
 <main>
-    <button><a href="formCreateUpdate.php">+</a></button>
+    <div class="flex-1">
+        <button class="px-3 py-1 w-full mx-2 rounded bg-green-500 hover:bg-green-600 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">+</a></button>
+    </div>
     <?php 
         $create = isset($_SESSION['create']) ? $_SESSION['create'] : null;
         if ($create == 'complete') :
     ?>
-        <p>El producto se creo correctamente</p>
+        <p class="text-sm text-green-400 text-center">El producto se creo correctamente</p>
     <?php elseif ($create == 'error') : ?>
-        <p>El producto no se creo</p>
+        <p class="text-sm text-red-400 text-center">El producto no se creo</p>
     <?php 
         endif;
         unset($_SESSION['create']);
     ?>
     <?php if ($result->num_rows > 0): ?>
-    <table>
+    <table class="flex justify-center items-center border-gray-400 border-2">
         <tr>
             <th>ID</th>
             <th>Nombre</th>
@@ -38,13 +40,13 @@ $result = $conexion->query($sql);
                     <td><?= $fila['price'] ?></td>
                     <td><?= $fila['stock'] ?></td>
                     <td><?= $fila['image'] ?></td>
-                    <td><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button>Modificar</button></a></td>
-                    <td><button id="delete.php?id=<?= $fila['id'] ?>">Eliminar</button></td>
+                    <td><a href="formCreateUpdate.php?id=<?= $fila['id']?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white cursor-pointer">Modificar</button></a></td>
+                    <td><button class="rounded bg-red-400 hover:bg-red-500 text-white cursor-pointer" id="delete.php?id=<?= $fila['id']?>">Eliminar</button></td>
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <div>
-                <p>No hay productos</p>
+            <div class="flex justify-center items-center">
+                <p class="text-2xl">No hay productos</p>
             </div>
         </table>
     <?php endif; ?>
