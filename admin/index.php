@@ -9,7 +9,7 @@ $result = $conexion->query($sql);
 ?>
 <main>
     <div class="flex-1">
-        <button class="px-3 py-1 w-full mx-auto rounded bg-green-500 hover:bg-green-600 mt-4 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">Crear Producto</a></button>
+        <button class="px-3 py-1 mx-auto rounded bg-green-600 hover:bg-green-600 mt-4 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">Crear Producto</a></button>
     </div>
     <?php
     $create = isset($_SESSION['create']) ? $_SESSION['create'] : null;
@@ -43,7 +43,7 @@ $result = $conexion->query($sql);
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['name'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['price'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['stock'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><img src="../assets/image/<?= $fila['image'] ?>" alt="Imagen" class="w-16 h-16 object-cover"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><img src="../assets/image/<?php $fila['image'] !== null ? $fila['image'] : 'no_foto.png'?>" alt="Imagen" class="w-16 h-16 object-cover"></td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 cursor-pointer">Modificar</button></a></td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="window.location.href='delete.php?id=<?= $fila['id'] ?>'">Eliminar</button></td>
                         </tr>
