@@ -17,9 +17,15 @@
             </nav>
         </div>
     </header>
-    <nav id="search-bar" class="mt-3 flex justify-center items-center">
-        <div class="items-center">
-            <input type="search" class="rounded" name="search" id=""> <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-2 rounded">Enviar</button>
+    <nav id="search-bar" class="mt-10 flex justify-center items-center">
+        <div class="flex flex-col items-center border border-gray-400 p-6 rounded-lg bg-white shadow-sm">
+            <div class="w-full">
+                <label for="Nombre">Ingrese su nombre:</label>
+                <p class="mb-3"><input type="search" class="rounded border border-gray-300 w-full" name="name" id=""></p>
+                <label for="Contraseña">Ingrese su contraseña:</label>
+                <p class="mb-4"><input type="search" class="rounded border border-gray-300 w-full" name="password" id=""></p>
+            </div>
+            <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-4 py-1 rounded w-max">Iniciar sesión</button>
         </div>
     </nav>
 
