@@ -43,13 +43,19 @@ $result = $conexion->query($sql);
                             <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['name'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['price'] ?></td>
                             <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['stock'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><img src="../assets/image/<?= !empty($fila['image']) ? $fila['image'] : 'no_foto.jpg' ?>" alt="Imagen" class="w-28 h-28 object-cover rounded-md"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><img src="../assets/image/<?= !empty($fila['image']) ? $fila['image'] : 'no_foto.jpg' ?>" alt="Imagen" class="w-28 h-28 object-cover"></td>
                             <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 cursor-pointer">Modificar</button></a></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="window.location.href='delete.php?id=<?= $fila['id'] ?>'">Eliminar</button></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="openWindow('delete.php?id=<?= $fila['id'] ?>')">Eliminar</button></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
+        </div>
+
+        <div id="ventana" class="hidden flex justify-center items-center z-30 bg-slate-600">
+            <button class="justify-end items-end text-end rounded-xl border-gray-700 text-black" onclick="closeWindow()">X</button>
+            <p class="text-xl">¿Estás seguro de que quieres eliminar este producto?</p>
+            <button class="px-3 py-1 bg-red-500 hover:bg-red-600 rounded" onclick="closeWindow()"><a class="text-xl text-white" id="deleteConfirm" href="">SI, ESTOY SEGURO</a></button>
         </div>
     <?php else: ?>
         <div class="flex justify-center items-center">
@@ -57,5 +63,22 @@ $result = $conexion->query($sql);
         </div>
     <?php endif; ?>
 </main>
+<script>
+    const openWindow = (url) => {
+        let ventana = document.querySelector('#ventana');
+        let confirmButton = document.querySelector('#deleteConfirm');
+
+        ventana.classList.delete('hidden');
+        confirmButton.href = url;
+    }
+
+    const closeWindow = () => {
+        let ventana = document.querySelector('#ventana');
+
+        ventana.classList.add('hidden');
+    }
+
+
+</script>
 
 <?php include '../layouts/footer.php'; ?>
