@@ -1,5 +1,5 @@
-<?php 
-include_once '../layouts/header.php'; 
+<?php
+include_once '../layouts/header.php';
 include_once '../auth/conexion.php';
 session_start();
 
@@ -9,46 +9,52 @@ $result = $conexion->query($sql);
 ?>
 <main>
     <div class="flex-1">
-        <button class="px-3 py-1 w-full mx-2 rounded bg-green-500 hover:bg-green-600 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">+</a></button>
+        <button class="px-3 py-1 w-full mx-auto rounded bg-green-500 hover:bg-green-600 mt-4 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">Crear Producto</a></button>
     </div>
-    <?php 
-        $create = isset($_SESSION['create']) ? $_SESSION['create'] : null;
-        if ($create == 'complete') :
+    <?php
+    $create = isset($_SESSION['create']) ? $_SESSION['create'] : null;
+    if ($create == 'complete') :
     ?>
         <p class="text-sm text-green-400 text-center">El producto se creo correctamente</p>
     <?php elseif ($create == 'error') : ?>
         <p class="text-sm text-red-400 text-center">El producto no se creo</p>
-    <?php 
-        endif;
-        unset($_SESSION['create']);
+    <?php
+    endif;
+    unset($_SESSION['create']);
     ?>
     <?php if ($result->num_rows > 0): ?>
-    <table class="flex justify-center items-center border-gray-400 border-2">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Imagen</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
-        </tr>
-            <?php while ($fila = $result->fetch_assoc()) : ?>
-                <tr>
-                    <td><?= $fila['id'] ?></td>
-                    <td><?= $fila['name'] ?></td>
-                    <td><?= $fila['price'] ?></td>
-                    <td><?= $fila['stock'] ?></td>
-                    <td><?= $fila['image'] ?></td>
-                    <td><a href="formCreateUpdate.php?id=<?= $fila['id']?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white cursor-pointer">Modificar</button></a></td>
-                    <td><button class="rounded bg-red-400 hover:bg-red-500 text-white cursor-pointer" id="delete.php?id=<?= $fila['id']?>">Eliminar</button></td>
-                </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <div class="flex justify-center items-center">
-                <p class="text-2xl">No hay productos</p>
-            </div>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagen</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Modificar</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <?php while ($fila = $result->fetch_assoc()) : ?>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['id'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['name'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['price'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['stock'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><img src="../assets/image/<?= $fila['image'] ?>" alt="Imagen" class="w-16 h-16 object-cover"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 cursor-pointer">Modificar</button></a></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="window.location.href='delete.php?id=<?= $fila['id'] ?>'">Eliminar</button></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="flex justify-center items-center">
+            <p class="text-2xl">No hay productos</p>
+        </div>
     <?php endif; ?>
 </main>
  
