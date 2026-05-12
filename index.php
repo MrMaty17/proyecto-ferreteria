@@ -12,7 +12,7 @@
 
     <main class="mt-10 flex justify-center items-center">
         <div class="flex flex-col items-center border border-gray-400 p-6 rounded-lg bg-white shadow-sm">
-            <form action="/admin/login.php" method="POST">
+            <form action="./auth/login.php" method="POST">
                 <div class="w-full">
                     <label for="Nombre">Ingrese su nombre:</label>
                     <p class="mb-3"><input type="text" class="rounded border border-gray-300 w-full" name="name" id=""></p>

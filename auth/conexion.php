@@ -1,6 +1,6 @@
 <?php
 
-$conexion = new mysqli('localhost', 'root', '', 'ferreteria');
+$conexion = new mysqli('localhost', 'root', 'Abhsa367?1!sgj', 'ferreteria');
 if ($conexion->connect_error) {
     die('Error de conexión: ' . $conexion->connect_error);
 }
