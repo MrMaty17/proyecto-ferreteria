@@ -20,6 +20,6 @@
     <nav id="search-bar" class="mt-3 flex justify-center items-center">
         <div class="items-center">
             <input type="search" class="rounded" name="search" id="">
-            <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-2 rounded">Iniciar sesión</button>
+            <button class="bg-green-600 hover:bg-green-700 cursor-pointer text-white px-2 rounded">Buscar</button>
         </div>
     </nav>

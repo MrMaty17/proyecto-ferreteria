@@ -51,4 +51,4 @@ $result = $conexion->query($sql);
         </table>
     <?php endif; ?>
 </main>
-<?php include_once '../layouts/footer.php'; ?>
+ 
