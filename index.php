@@ -12,7 +12,6 @@
             <h1 class="text-2xl">Ferreteria</h1>
             <nav>
                 <ul class="flex items-center justify-center gap-4">
-                    <!-- <li><button onclick="onClickSeachButton()" class="cursor-pointer"><img src="./assets/image/search-outline.svg" alt="icono de buscador" class="w-6 h-5 mt-2 invert"></button></li> -->
                     <li><a class="text-xl" href="index.php">Inicio</a></li>
                 </ul>
             </nav>
@@ -35,12 +34,5 @@
             <a class="hover:text-green-700" href="#">GitHub</a>
         </div>
     </footer>
-
-    <!-- <script>
-        const onClickSeachButton = () => {
-            let searchBox = document.querySelector('#search-bar');
-            searchBox.classList.toggle('hidden');
-        }
-    </script> -->
 </body>
 </html>
