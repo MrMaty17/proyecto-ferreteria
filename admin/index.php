@@ -39,13 +39,13 @@ $result = $conexion->query($sql);
                 <tbody class="bg-white divide-y divide-gray-200">
                     <?php while ($fila = $result->fetch_assoc()) : ?>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['id'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['name'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['price'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $fila['stock'] ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><img src="../assets/image/<?= !empty($fila['image']) ? $fila['image'] : 'no_foto.jpg' ?>" alt="Imagen" class="w-28 h-28 object-cover rounded-md"></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 cursor-pointer">Modificar</button></a></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="window.location.href='delete.php?id=<?= $fila['id'] ?>'">Eliminar</button></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['id'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['name'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['price'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><?= $fila['stock'] ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><img src="../assets/image/<?= !empty($fila['image']) ? $fila['image'] : 'no_foto.jpg' ?>" alt="Imagen" class="w-28 h-28 object-cover rounded-md"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><a href="formCreateUpdate.php?id=<?= $fila['id'] ?>"><button class="rounded bg-blue-400 hover:bg-blue-500 text-white px-3 py-1 cursor-pointer">Modificar</button></a></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xl text-black"><button class="rounded bg-red-400 hover:bg-red-500 text-white px-3 py-1 cursor-pointer" onclick="window.location.href='delete.php?id=<?= $fila['id'] ?>'">Eliminar</button></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
