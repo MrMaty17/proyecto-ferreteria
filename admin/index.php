@@ -52,10 +52,20 @@ $result = $conexion->query($sql);
             </table>
         </div>
 
-        <div id="ventana" class="hidden flex justify-center items-center z-30 bg-slate-600">
-            <button class="justify-end items-end text-end rounded-xl border-gray-700 text-black" onclick="closeWindow()">X</button>
-            <p class="text-xl">¿Estás seguro de que quieres eliminar este producto?</p>
-            <button class="px-3 py-1 bg-red-500 hover:bg-red-600 rounded" onclick="closeWindow()"><a class="text-xl text-white" id="deleteConfirm" href="">SI, ESTOY SEGURO</a></button>
+        <div id="ventana" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-black/50 p-4">
+            <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl border border-slate-200">
+                <div class="flex items-start justify-between gap-4 mb-5">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-slate-900">Confirmar eliminación</h2>
+                        <p class="mt-2 text-sm text-slate-600">¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.</p>
+                    </div>
+                    <button class="text-slate-400 hover:text-slate-700 text-2xl leading-none" onclick="closeWindow()" aria-label="Cerrar">×</button>
+                </div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                    <button class="w-full rounded-2xl bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300" onclick="closeWindow()">Cancelar</button>
+                    <a id="deleteConfirm" href="" class="w-full rounded-2xl bg-red-600 px-4 py-2 text-center text-white hover:bg-red-700">Sí, eliminar</a>
+                </div>
+            </div>
         </div>
     <?php else: ?>
         <div class="flex justify-center items-center">
@@ -65,20 +75,17 @@ $result = $conexion->query($sql);
 </main>
 <script>
     const openWindow = (url) => {
-        let ventana = document.querySelector('#ventana');
-        let confirmButton = document.querySelector('#deleteConfirm');
+        const ventana = document.querySelector('#ventana');
+        const confirmButton = document.querySelector('#deleteConfirm');
 
-        ventana.classList.delete('hidden');
+        ventana.classList.remove('hidden');
         confirmButton.href = url;
     }
 
     const closeWindow = () => {
-        let ventana = document.querySelector('#ventana');
-
+        const ventana = document.querySelector('#ventana');
         ventana.classList.add('hidden');
     }
-
-
 </script>
 
 <?php include '../layouts/footer.php'; ?>
