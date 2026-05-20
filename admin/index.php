@@ -12,15 +12,22 @@ $result = $conexion->query($sql);
         <button class="px-3 py-1 mx-auto rounded bg-green-600 hover:bg-green-600 my-4 cursor-pointer"><a class="text-xl text-white" href="formCreateUpdate.php">Crear Producto</a></button>
     </div>
     <?php
-    $create = isset($_SESSION['create']) ? $_SESSION['create'] : null;
-    if ($create == 'complete') :
+    $create = $_SESSION['create'] ?? null;
+    $edit = $_SESSION['edit'] ?? null;
+    $delete = $_SESSION['delete'] ?? null;
+    if ($edit === 'edit') :
     ?>
-        <p class="text-sm text-green-400 text-center">El producto se creo correctamente</p>
-    <?php elseif ($create == 'error') : ?>
-        <p class="text-sm text-red-400 text-center">El producto no se creo</p>
+        <p class="text-sm text-green-400 text-center">El producto se editó correctamente</p>
+    <?php elseif ($create === 'complete') : ?>
+        <p class="text-sm text-green-400 text-center">El producto se creó correctamente</p>
+    <?php elseif ($delete === 'delete') : ?>
+        <p class="text-sm text-green-400 text-center">El producto se borró correctamente</p>
+    <?php elseif ($edit === 'error' || $create === 'error' || $delete === 'error') : ?>
+        <p class="text-sm text-red-400 text-center">El producto no se creó</p>
     <?php
     endif;
     unset($_SESSION['create']);
+    unset($_SESSION['edit']);
     ?>
     <?php if ($result->num_rows > 0): ?>
         <div class="overflow-x-auto">
@@ -63,7 +70,7 @@ $result = $conexion->query($sql);
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
                     <button class="w-full rounded-2xl bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300" onclick="closeWindow()">Cancelar</button>
-                    <a id="deleteConfirm" href="" class="w-full rounded-2xl bg-red-600 px-4 py-2 text-center text-white hover:bg-red-700">Sí, eliminar</a>
+                    <a id="deleteConfirm" href="delete.php?id=<?= $fila['id'] ?>" class="w-full rounded-2xl bg-red-600 px-4 py-2 text-center text-white hover:bg-red-700">Sí, eliminar</a>
                 </div>
             </div>
         </div>
