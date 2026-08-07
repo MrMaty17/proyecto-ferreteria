@@ -3,8 +3,18 @@ include '../layouts/header.php';
 include_once '../auth/conexion.php';
 session_start();
 
-$sql = "SELECT * FROM products";
-$result = $conexion->query($sql);
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+if ($search !== '') {
+    $stmt = $conexion->prepare("SELECT * FROM products WHERE name LIKE ?");
+    $likeSearch = '%' . $search . '%';
+    $stmt->bind_param('s', $likeSearch);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $sql = "SELECT * FROM products";
+    $result = $conexion->query($sql);
+}
 
 ?>
 <main>
@@ -29,6 +39,9 @@ $result = $conexion->query($sql);
     unset($_SESSION['create']);
     unset($_SESSION['edit']);
     ?>
+    <?php if ($search !== ''): ?>
+        <p class="text-sm text-slate-600 text-center mb-2">Resultados para: "<?= $search ?>" — <a href="index.php" class="text-green-700 hover:underline">ver todos</a></p>
+    <?php endif; ?>
     <?php if ($result->num_rows > 0): ?>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -70,13 +83,13 @@ $result = $conexion->query($sql);
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
                     <button class="w-full rounded-2xl bg-slate-200 px-4 py-2 text-slate-800 hover:bg-slate-300" onclick="closeWindow()">Cancelar</button>
-                    <a id="deleteConfirm" href="delete.php?id=<?= $fila['id'] ?>" class="w-full rounded-2xl bg-red-600 px-4 py-2 text-center text-white hover:bg-red-700">Sí, eliminar</a>
+                    <a id="deleteConfirm" href="delete.php?id=<?= $fila['id'] ?? '' ?>" class="w-full rounded-2xl bg-red-600 px-4 py-2 text-center text-white hover:bg-red-700">Sí, eliminar</a>
                 </div>
             </div>
         </div>
     <?php else: ?>
         <div class="flex justify-center items-center">
-            <p class="text-2xl">No hay productos</p>
+            <p class="text-2xl"><?= $search !== '' ? 'No se encontraron productos' : 'No hay productos' ?></p>
         </div>
     <?php endif; ?>
 </main>
